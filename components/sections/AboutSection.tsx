@@ -64,9 +64,6 @@ export function AboutSection() {
         >
           {/* Header Section */}
           <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-            <motion.div variants={fadeUpVariant} className="mb-8 rounded-full border border-border px-5 py-2 text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-              About Me
-            </motion.div>
             <motion.h2 
               variants={fadeUpVariant}
               className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter text-foreground leading-[1.1]"
@@ -102,7 +99,7 @@ export function AboutSection() {
           </motion.div>
 
           {/* Description Columns */}
-          <motion.div variants={fadeUpVariant} className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 text-lg md:text-xl text-muted-foreground max-w-5xl mx-auto leading-relaxed">
+          <motion.div variants={fadeUpVariant} className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 text-lg md:text-xl text-muted-foreground max-w-[1200px] mx-auto leading-relaxed">
             <div className="flex flex-col gap-6">
               <p>
                 I am a Full Stack Developer based in Mumbai, India, with 1+ years of professional experience building scalable web and mobile applications.
@@ -162,7 +159,7 @@ export function AboutSection() {
           </div>
 
           {/* Quote Section */}
-          <motion.div variants={fadeUpVariant} className="border-t border-border pt-10 md:pt-16 text-center max-w-4xl mx-auto w-full">
+          <motion.div variants={fadeUpVariant} className="border-t border-border pt-10 md:pt-16 text-center max-w-6xl mx-auto w-full">
             <p className="text-2xl md:text-4xl font-light italic leading-normal text-foreground">
               "I enjoy transforming business requirements into <span className="font-medium text-muted-foreground not-italic">scalable digital solutions</span> that deliver real value to users and organizations."
             </p>

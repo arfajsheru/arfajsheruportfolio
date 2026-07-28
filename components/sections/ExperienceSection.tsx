@@ -73,7 +73,7 @@ const howILearned = [
 
 const proTechStack = [
   "React.js", "Next.js", "React Native", "Expo",
-  "TypeScript", "Node.js", "NestJS", "PostgreSQL", "Prisma ORM",
+  "TypeScript", "Node.js", "NestJS", "PostgreSQL", "Prisma ORM", "PHP", "Laravel",
 ];
 
 const responsibilities = [
@@ -94,22 +94,9 @@ const achievements = [
   { icon: Code2, title: "API Development", description: "Designed scalable APIs and backend workflows for business processes." },
 ];
 
-const currentFocus = [
-  "Enterprise CRM Systems", "Manufacturing Platforms",
-  "Mobile Applications", "Workflow Automation",
-  "API Development", "Database Optimization",
-];
-
 const documents = [
   { id: "offer", icon: FileText, title: "Offer Letter", company: "VLOQ", description: "Official offer letter confirming my Software Developer position.", file: "/documents/offer-letter.pdf" },
   { id: "joining", icon: FileText, title: "Joining Letter", company: "VLOQ", description: "Official joining confirmation document.", file: "/documents/joining-letter.pdf" },
-];
-
-const trustBadges = [
-  "Professional Industry Experience",
-  "Official Employment Verification",
-  "Active Software Developer",
-  "Enterprise Project Experience",
 ];
 
 // ─── Parallax Floating Number ─────────────────────────────────────────────────
@@ -272,7 +259,7 @@ function ChapterHeader({
   number: string;
   label: string;
   period: string;
-  statusLabel: string;
+  statusLabel?: string;
   active?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -280,25 +267,27 @@ function ChapterHeader({
   const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <div ref={ref} className="relative flex items-start gap-6 mb-12 md:mb-16">
-      {/* Big Chapter Number (parallax) */}
+    <div ref={ref} className="relative flex items-center gap-6 mb-12 md:mb-16">
+      {/* Big Chapter Number */}
       <div
-        className="select-none font-black text-[6rem] md:text-[9rem] leading-none tracking-tighter text-foreground/5 shrink-0 -mt-4"
+        className="select-none font-black text-[6rem] md:text-[9rem] leading-none tracking-tighter text-foreground/5 shrink-0"
         aria-hidden
       >
-        <ParallaxChar char={number} speed={30} />
+        {number}
       </div>
 
       {/* Content */}
-      <div className="flex flex-col gap-3 pt-4">
-        <div className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] w-fit ${
-          active
-            ? "border-foreground/30 bg-card text-foreground"
-            : "border-dashed border-border text-muted-foreground"
-        }`}>
-          {active && <span className="h-1.5 w-1.5 rounded-full bg-foreground animate-pulse" />}
-          {statusLabel}
-        </div>
+      <div className="flex flex-col gap-2">
+        {statusLabel && (
+          <div className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] w-fit ${
+            active
+              ? "border-foreground/30 bg-card text-foreground"
+              : "border-dashed border-border text-muted-foreground"
+          }`}>
+            {active && <span className="h-1.5 w-1.5 rounded-full bg-foreground animate-pulse" />}
+            {statusLabel}
+          </div>
+        )}
         <h3 className="text-3xl md:text-4xl font-black tracking-tighter text-foreground leading-none">
           {label}
         </h3>
@@ -360,11 +349,8 @@ export function ExperienceSection() {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             variants={fadeUp}
-            className="max-w-3xl"
+            className="max-w-3xl mx-auto flex flex-col items-center text-center"
           >
-            <p className="mb-5 text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground">
-              Experience
-            </p>
             <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-foreground leading-[0.95]">
               My{" "}
               <span className="relative inline-block">
@@ -492,35 +478,58 @@ export function ExperienceSection() {
               number="02"
               label="Software Developer"
               period="June 2025 – Present · VLOQ · Mumbai, India"
-              statusLabel="Currently Working"
               active
             />
 
-            {/* Description + Meta */}
+            {/* Description + Meta Card */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
               variants={fadeUp}
-              className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-8 mb-12"
+              className="flex flex-col lg:flex-row justify-between gap-8 border border-border bg-card/40 rounded-3xl p-6 md:p-8 mb-12"
             >
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                Currently working as a Full Stack Developer contributing to enterprise CRM
-                systems, business management platforms, manufacturing solutions, and
-                cross-platform mobile applications at VLOQ.
-              </p>
-              <div className="flex flex-col gap-3">
+              <div className="w-full lg:w-[300px] shrink-0 bg-background/50 border border-border/60 rounded-2xl p-5 flex flex-col gap-4">
                 {[
-                  { label: "Company", value: "VLOQ" },
-                  { label: "Location", value: "Mumbai, India" },
+                  { 
+                    label: "Company", 
+                    value: "VLOQ", 
+                    sub: "SaaS & Product", 
+                    href: "https://www.linkedin.com/company/vloq/about/" 
+                  },
+                  { label: "Location", value: "Jogeshwari, Mumbai" },
                   { label: "Since", value: "June 2025" },
                   { label: "Type", value: "Full-Time" },
                 ].map((meta) => (
-                  <div key={meta.label} className="flex items-center justify-between border-b border-border/50 pb-3 last:border-0 last:pb-0">
+                  <div key={meta.label} className="flex items-center justify-between border-b border-border/40 pb-3 last:border-0 last:pb-0">
                     <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{meta.label}</span>
-                    <span className="text-sm font-semibold text-foreground">{meta.value}</span>
+                    <div className="text-right">
+                      {meta.href ? (
+                        <a 
+                          href={meta.href} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-sm font-semibold text-foreground hover:text-foreground/80 underline decoration-border/60 underline-offset-4 hover:decoration-foreground/40 transition-colors block"
+                        >
+                          {meta.value}
+                        </a>
+                      ) : (
+                        <span className="text-sm font-semibold text-foreground block">{meta.value}</span>
+                      )}
+                      {meta.sub && <span className="text-[10px] text-muted-foreground block">{meta.sub}</span>}
+                    </div>
                   </div>
                 ))}
+              </div>
+
+              <div className="flex-1 space-y-4">
+                <h4 className="text-lg font-bold tracking-tight text-foreground">Role & Company Overview</h4>
+                <p className="text-sm md:text-base text-foreground/85 leading-relaxed">
+                  VLOQ is a SaaS and Product-based technology company located in Jogeshwari, Mumbai. 
+                  Since June 2025, I have been working here as a Full Stack Developer, contributing 
+                  to their core SaaS platforms, enterprise CRM systems, business management software, 
+                  manufacturing workflow automation, and cross-platform mobile applications.
+                </p>
               </div>
             </motion.div>
 
@@ -536,12 +545,12 @@ export function ExperienceSection() {
                 <motion.div
                   key={r}
                   variants={itemFade}
-                  className="flex items-start gap-3 rounded-2xl border border-border bg-card px-5 py-4"
+                  className="flex items-start gap-4 rounded-2xl border border-border bg-card/40 hover:bg-card hover:border-foreground/20 px-5 py-4 transition-all duration-300"
                 >
-                  <span className="mt-0.5 text-[10px] font-black text-muted-foreground/40 shrink-0 tabular-nums">
+                  <span className="mt-0.5 text-xs font-bold text-foreground/40 shrink-0 tabular-nums">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{r}</p>
+                  <p className="text-sm text-foreground/90 leading-relaxed">{r}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -577,66 +586,6 @@ export function ExperienceSection() {
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
             >
               {achievements.map((a) => <SmallCard key={a.title} {...a} />)}
-            </motion.div>
-          </div>
-
-          {/* ══ CURRENT FOCUS + TRUST BADGES ══════════════════════════════════ */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="rounded-3xl border border-border bg-card p-8"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="flex h-8 w-8 items-center justify-center rounded-xl border border-border bg-background">
-                  <Zap className="h-4 w-4 text-foreground" />
-                </div>
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
-                  Currently Working On
-                </span>
-              </div>
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={stagger}
-                className="grid grid-cols-1 sm:grid-cols-2 gap-3"
-              >
-                {currentFocus.map((item) => (
-                  <motion.div
-                    key={item}
-                    variants={itemFade}
-                    className="flex items-center gap-3 rounded-2xl border border-border bg-background px-4 py-3 text-sm font-medium text-foreground"
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-foreground animate-pulse shrink-0" />
-                    {item}
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={stagger}
-              className="flex flex-col gap-3"
-            >
-              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground mb-1">
-                Professional Verification
-              </p>
-              {trustBadges.map((badge) => (
-                <motion.div
-                  key={badge}
-                  variants={itemFade}
-                  className="flex items-center gap-2.5 rounded-full border border-border bg-card px-4 py-3 text-sm font-medium text-foreground"
-                >
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-foreground" />
-                  {badge}
-                </motion.div>
-              ))}
             </motion.div>
           </div>
 

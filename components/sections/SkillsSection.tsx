@@ -66,6 +66,8 @@ const categories = [
       { name: "Express.js", icon: "/skills/express.svg" },
       { name: "NestJS", icon: "/skills/nestjs.svg" },
       { name: "Fastify", icon: "/skills/fastify.svg" },
+      { name: "PHP", icon: "/skills/php.svg" },
+      { name: "Laravel", icon: "/skills/laravel.svg" },
     ],
   },
   {
@@ -312,9 +314,6 @@ export function SkillsSection() {
             variants={fadeUp}
             className="flex flex-col items-center text-center max-w-3xl mx-auto"
           >
-            <div className="mb-8 rounded-full border border-border px-5 py-2 text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-              Skills &amp; Technologies
-            </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-foreground leading-[1.1]">
               Technologies I Use To{" "}
               <span className="text-muted-foreground italic font-light">

@@ -81,12 +81,12 @@ export function Navbar() {
             <Link
               href="#home"
               onClick={() => handleNavClick("#home")}
-              className="group flex items-center gap-2.5"
+              className="group flex items-center gap-3"
             >
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-foreground text-background text-[11px] font-black shrink-0 transition-all duration-300 group-hover:scale-95">
+              <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-zinc-800 via-zinc-900 to-black border border-zinc-700/50 text-zinc-100 text-[11px] font-black tracking-wide shrink-0 transition-all duration-300 group-hover:rotate-6 group-hover:scale-105 shadow-md shadow-black/25">
                 AS
               </div>
-              <span className="text-sm font-bold tracking-tight text-foreground">
+              <span className="text-sm font-black tracking-tight bg-gradient-to-r from-foreground via-foreground/90 to-foreground/65 bg-clip-text text-transparent transition-all duration-300 group-hover:text-foreground">
                 Arfaj Sheru
               </span>
             </Link>
@@ -177,11 +177,11 @@ export function Navbar() {
             >
               {/* Panel Header */}
               <div className="flex items-center justify-between p-5 border-b border-border">
-                <div className="flex items-center gap-2.5">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-foreground text-background text-[11px] font-black">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-zinc-800 via-zinc-900 to-black border border-zinc-700/50 text-zinc-100 text-[11px] font-black tracking-wide shadow-md shadow-black/25">
                     AS
                   </div>
-                  <span className="text-sm font-bold text-foreground">Arfaj Sheru</span>
+                  <span className="text-sm font-black tracking-tight text-foreground">Arfaj Sheru</span>
                 </div>
                 <button
                   className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-muted-foreground hover:text-foreground"
